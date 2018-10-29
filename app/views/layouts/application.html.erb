@@ -17,7 +17,14 @@
             <a class="navbar-brand" href="#">
               <img alt="Ideas" src="/assets/logo.png" style="width: 50px">
             </a>
-            <%= link_to "Sign-Up", new_user_path %>
+            <% if current_user %>
+              <span>Hello <%= current_user.first_name %></span>
+              <%= link_to "Sign-Out", session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Sign-Up", new_user_path %>
+              |
+              <%= link_to "Sign-In", new_session_path %>
+            <% end %>
           </div>
         </div>
       </nav>
@@ -25,3 +32,5 @@
     </header>
   </body>
 </html>
+
+

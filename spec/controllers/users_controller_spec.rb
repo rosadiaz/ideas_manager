@@ -23,11 +23,21 @@ RSpec.describe UsersController, type: :controller do
         post(:create, params: {user: FactoryBot.attributes_for(:user)})
         expect(response).to redirect_to(root_path)
       end
-      it "stores user id in session"
+      it "stores user id in session" do
+        post(:create, params: {user: FactoryBot.attributes_for(:user)})
+        expect(session[:user_id]).to be
+      end
     end
     context "with invalid params" do
-      it "stores input info in an instance of User"  
-      it "renders sign up page"
+      before do
+        post(:create, params: {user: FactoryBot.attributes_for(:user, email: nil)})
+      end
+      it "stores input info in an instance of User" do
+        expect(assigns(:user)).to be_a_new(User)
+      end
+      it "renders sign up page" do
+        expect(response).to render_template(:new)
+      end
     end
   end
 
