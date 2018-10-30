@@ -1,0 +1,12 @@
+<h1>Ideas index</h1>
+
+<ul>
+  <% @ideas.each do |idea| %>
+    <li>
+      <%= link_to(idea.title, idea_path(idea.id)) %> <br>
+      <small>
+        Posted by <%= idea.user.first_name %>
+      </small>
+    </li>
+  <% end %>
+</ul>

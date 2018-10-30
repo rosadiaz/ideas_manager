@@ -1,0 +1,22 @@
+<h3><%= @idea.title %></h3>
+<div class="container">
+  <p><%= @idea.description %></p>
+  <small>Created by: <%= @idea.user.first_name%></small>
+</div>
+
+<% if can?(:delete, @idea) %>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to(
+      "Delete",
+      idea_path(@idea.id),
+      method: :delete,
+      data: { confirm: "Are you positive?" },
+      class: "btn btn-sm btn-outline-danger"
+    ) %>
+    <%= link_to(
+      "Edit",
+      edit_idea_path(@idea.id),
+      class: "btn btn-sm btn-outline-warning"
+    ) %>
+  </div>
+<% end %>

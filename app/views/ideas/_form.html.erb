@@ -1,0 +1,17 @@
+<%= form_for @idea do |f| %>
+  <% if @idea.errors.present? %>
+    <% @idea.errors.full_messages.each do |m| %>
+      <div class="alert alert-warning" role="alert"><%= m %></div>
+    <% end %>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control"  %>
+  </div>
+
+  <%= f.submit "Save", class: "btn btn-dark" %>
+<% end %>
