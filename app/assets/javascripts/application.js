@@ -16,3 +16,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+$(document).ready(function() {
+
+  document.querySelectorAll(".more").forEach(node => {
+    node.addEventListener("click", event => {
+      const currentTarget = event.currentTarget;
+      const p = document.createElement("p");
+      p.innerHTML= "<%= idea.description %>";
+      currentTarget.parentNode.append(p)
+    })
+  })
+})
+
