@@ -20,14 +20,14 @@ NUM_OF_IDEAS.times do
     description: (Faker::HitchhikersGuideToTheGalaxy.marvin_quote), 
     user_id: all_users.sample.id
   )
-  # if p.valid?
-  #   rand(0..5).times do
-  #     p.reviews << Review.new( body: Faker::DumbAndDumber.quote, user_id: all_users.sample.id )
-  #   end
-  # end
+  if p.valid?
+    rand(0..5).times do
+      p.reviews << Review.new( body: Faker::DumbAndDumber.quote, user_id: all_users.sample.id )
+    end
+  end
   
 end
 
 puts ("🚶‍♂️ Generated #{User.count} users")
 puts ("💡 Generated #{Idea.count} ideas")
-# puts ("💭 Generated #{Review.count} reviews")
+puts ("💭 Generated #{Review.count} reviews")

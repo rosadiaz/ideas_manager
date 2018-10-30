@@ -20,3 +20,47 @@
     ) %>
   </div>
 <% end %>
+
+<%= form_for([@idea, @review]) do |f| %>
+  <% if @review.errors.present? %>
+    <% @review.errors.full_messages.each do |m| %>
+      <div class="alert alert-warning" role="alert"><%= m %></div>
+    <% end %>
+  <% end %>
+  <br>
+
+  <div class="form-group">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Submit review" %>
+<% end %>
+<br>
+<p><b>Reviews</b></p>
+
+<ul class="review-list">
+  <% @reviews.each do |review| %>
+    <li>
+      <p>
+        <small>
+          <strong>
+            <%= review.user&.first_name || "[DELETED]" %>:
+          </strong>
+        </small> <br>
+        <%= review.body %> <br>
+        <% if can? :delete, review %>
+          <small>
+            <%= link_to(
+              "Delete",
+              idea_review_path(@idea, review),
+              method: :delete,
+              data: {
+                confirm: "Are you positive?"
+              }
+            ) %>
+          </small>
+        <% end %>
+      </p>
+    </li>
+  <% end %>
+</ul>
