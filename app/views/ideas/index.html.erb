@@ -1,0 +1,9 @@
+<h1>Ideas index</h1>
+
+  <% @ideas.each do |idea| %>
+    <div>
+      <img src="/assets/plus.png" style="width: 15px" class="more">
+      <%= link_to(idea.title, idea_path(idea.id)) %>
+      <small> - by <%= idea.user.first_name %></small> 
+    </div>
+  <% end %>
